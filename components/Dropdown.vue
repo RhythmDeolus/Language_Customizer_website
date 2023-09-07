@@ -13,45 +13,95 @@ function toggle() {
 
 
 <template>
-  <div @click="toggle" class="title is-5 has-text-white-ter">{{ props.title }}</div>
-  <!-- <div :class="[isActive ? activeClass : inActiveClass]"><slot></slot></div> -->
-  <div :class="[isActive ? activeClass : inActiveClass, 'list']">
-    <div v-for="item in props.struct" :key="item.id" class="list-item columns">
-      <label :for="item.name" class="has-text-white column is-one-quarter is-offset-3">{{ item.name }}</label>
-      <input
-        class="text-field input column is-one-quarter"
-        :name="item.name"
-        v-if="item.text"
-        type="text"
-        :value="item.value"
-        @input="
-          (event) =>
-            (props.struct[event.target.name].value = event.target.value)
-        "
-      />
-      <input
-        type="checkbox"
-        :id="item.id"
-        :name="item.name"
-        v-if="item.check"
-      />
+  <div class="dropdown1 has-background-dark">
+    <div @click="toggle" class="drop-title lctitle is-5 has-text-white-ter p-4">
+      {{ props.title }}
+    </div>
+    <div :class="[isActive ? activeClass : inActiveClass, 'list']">
+      <div
+        v-for="item in props.struct"
+        :key="item.id"
+        class="list-item columns_or "
+      >
+        <label
+          :for="item.name"
+          class="has-text-white label column_or"
+          >{{ item.name }}</label
+        >
+        <input
+          class="text-field input column_or"
+          :name="item.name"
+          v-if="item.text"
+          type="text"
+          :value="item.value"
+          @input="
+            (event) =>
+              (props.struct[event.target.name].value = event.target.value)
+          "
+        />
+        <input
+          type="checkbox"
+          :id="item.id"
+          :name="item.name"
+          v-if="item.check"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.drop-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
 .list {
-  transition: all 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  transition-property: max-height;
   overflow: hidden;
   display: block;
 }
 
+.dropdown1 {
+  border-radius: 0.6rem;
+
+}
+
+.text-field {
+  text-align: center;
+}
+
+.list-item {
+  margin: 0.75rem 0;
+}
+
+.columns_or {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.column_or {
+  width: 30%;
+}
 
 .inactive {
   max-height: 0;
+  padding: 0;
+}
+
+.label {
+  text-align: center;
 }
 
 .active {
   max-height: 1000px;
+  border: 1px solid #7a7a7a;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
 }
 </style>

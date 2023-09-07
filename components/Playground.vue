@@ -2,38 +2,66 @@
 import Editor from "./Editor.vue";
 import Output from "./Output.vue";
 import Creator from "./Creator.vue";
-import {useRoute} from "vue-router";
-import { computed, onBeforeMount } from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
-
-// console.log(route.query);
-
-let config = JSON.parse(route.query.json);
+let config = {keys: {}};
+if (route.query.json) config = JSON.parse(atob(route.query.json));
 
 // onBeforeMount(() => {
-  
-  let keywords = HL.hl.getKeywords();
 
-  for (let key in config.keys) {
-    let c = keywords[key];
-    delete keywords[key];
-    keywords[config.keys[key]] = c;
-  }
+let keywords = HL.hl.getKeywords();
 
-// })
+for (let key in config.keys) {
+  let c = keywords[key];
+  delete keywords[key];
+  keywords[config.keys[key]] = c;
+}
 
-
-
-
-// let val = computed(() => {
-//   return route.params.val;
 // })
 
 </script>
 
 <template>
-  <Editor />
-  <Output />
-  <Creator :dynamic="true" />
+  <div class="screens">
+    <div
+      class="screen1"
+      style="justify-content: center; align-items: center; display: flex"
+    >
+      <div class="main-container has-background-grey-dark box">
+        <Editor />
+        <Output />
+      </div>
+    </div>
+    <div class="screen2">
+      <Creator :dynamic="true" />
+    </div>
+  </div>
 </template>
+
+
+<style scoped>
+.main-container {
+  width: 95%;
+  height: 95%;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.screens {
+  width: 100%;
+  height: 100%;
+}
+.screen1 {
+  position: absolute;
+  width: 60%;
+  height: 100%;
+}
+.screen2 {
+  right: 0;
+  width: 40%;
+  height: 100%;
+  position: absolute;
+}
+</style>

@@ -6,10 +6,13 @@ import App from "./App.vue"
 
 import Playground from "./components/Playground.vue";
 import Creator from "./components/Creator.vue";
+import Home from "./components/Home.vue";
 
 const routes = [
   { path: '/playground', component: Playground },
   { path: '/creator', component: Creator },
+  { path: '/', component: Home },
+  { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 import { createRouter, createWebHistory } from 'vue-router'
 

@@ -2,6 +2,10 @@
 import { ref } from "vue";
 import { useStore } from "vuex";
 const store = useStore();
+
+const editorId = ref("");
+const run = ref("");
+
 function update(text) {
   let result_element = document.querySelector("#highlighting-content");
   // Handle final newlines (see article)
@@ -9,7 +13,7 @@ function update(text) {
     text += " ";
   }
   // Update code
-  result_element.innerHTML = text
+  result_element.innerHTML = text;
   //   .replace(new RegExp("&", "g"), "&amp;")
   //   .replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
   // // Syntax Highlight
@@ -42,19 +46,16 @@ function check_tab(element, event) {
     calc();
   }
 }
-
-let editorId = ref("");
-
-let run = ref("");
-
-function calc() {
+async function sub_calc() {
   let out = {
     value: "",
   };
-  run.value.classList.add('is-loading')
   HL.hl.run(editorId.value.value, out);
-  run.value.classList.remove('is-loading')
   store.commit("changeOutput", out.value);
+}
+
+function calc() {
+  sub_calc();
 }
 </script>
 
@@ -79,25 +80,58 @@ function calc() {
     ></textarea>
 
     <pre id="highlighting" aria-hidden="true">
-    <code class="language-js" id="highlighting-content"></code>
-    </pre>
+      <code class="language-js" id="highlighting-content"></code>
+      </pre>
   </div>
-  <button class="button is-success" ref="run" @click="calc" type="button" style="position: relative">
-    Run
-  </button>
+  <div class="contain-button">
+    <button
+      :class="['button', 'is-success']"
+      ref="run"
+      @click="calc"
+      type="button"
+      style="position: relative; float: right; margin: 0 20px"
+    >
+      Run
+    </button>
+  </div>
 </template>
 
 <style scoped>
 /* Please see the article */
 
+.contain-button {
+  overflow: auto;
+  height: 15%;
+}
+
+#editing::-webkit-scrollbar,
+#highlighting::-webkit-scrollbar {
+  width: 10px;
+}
+
+#editing::-webkit-scrollbar-track,
+#highlighting::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+#editing::-webkit-scrollbar-thumb,
+#highlighting::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#highlighting {
+  background-color: black;
+}
+
 #editing,
 #highlighting {
   /* Both elements need the same text and space styling so they are directly on top of each other */
-  margin: 10px;
   padding: 10px;
   border: 0;
-  width: calc(100% - 32px);
-  height: 150px;
+  width: calc(100%);
+  height: 100%;
+  margin: 0;
+  scrollbar-width: thin;
 }
 
 #editing,
@@ -116,6 +150,8 @@ function calc() {
 
 .stack {
   display: grid;
+  margin: 0 10px;
+  height: 40%;
 }
 
 .stack > * {

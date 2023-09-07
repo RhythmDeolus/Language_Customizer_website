@@ -7,7 +7,7 @@ let v = computed(() => {
   for (let key in keyStruct.value) {
     t[key] = keyStruct.value[key].value;
   }
-  return "/playground?json=" + JSON.stringify({ keys: t });
+  return "/playground?json=" + btoa(JSON.stringify({ keys: t }));
 });
 
 const keywords = HL.hl.getKeywords();
@@ -33,16 +33,74 @@ function setKeywords() {
     keywords[keyStruct.value[key].value] = c;
   }
 }
+
+function shareLink() {
+  navigator.clipboard.writeText(window.location.origin + v.value);
+  mdtoast("Copied to the clipboard", {type: mdtoast.SUCCESS});
+}
 </script>
 
 <template>
-  <div class="container">
-    <Dropdown title="Keywords" :struct="keyStruct" class=""></Dropdown>
-    <button @click="setKeywords" v-if="props.dynamic" class="button is-success">Press me!</button>
-    <a class="button is-success" :href="v" v-if="!props.dynamic">Go!</a>
+  <div class="screen">
+    <div class="subscreen">
+      <div class="container has-background-grey-dark">
+        <div class="dropdowns">
+          <Dropdown title="Keywords" :struct="keyStruct" class=""></Dropdown>
+        </div>
+      </div>
+      <div class="button-list">
+        <button @click="shareLink" class="button is-success" v-if="props.dynamic">Share</button>
+        <button @click="setKeywords" class="button is-success" v-if="props.dynamic">Apply</button>
+
+        <router-link class="button is-success" :to="v" v-if="!props.dynamic">Go!</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 
 <style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.button-list {
+  position: absolute;
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  left: 0;
+  bottom: 1.5rem;
+}
+
+.button-list > * {
+  margin: 0 10px;
+}
+
+.subscreen {
+  right: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.screen {
+  right: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 </style>
