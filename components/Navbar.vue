@@ -84,5 +84,6 @@ a.navbar-item:hover, .navbar-item:hover, .navbar-link:hover {
 #logo {
   height: 1.75rem;
   width: 1.75rem;
+  filter: contrast(0);
 }
 </style>
