@@ -21,7 +21,7 @@ function reset() {
 <template>
   <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link @click="reset" class="navbar-item" to="/">
+      <router-link @click="reset" class="navbar-item has-background-dark" to="/">
         <img id="logo" src="/dist/programming.png" alt="logo" width="112" height="28">
       </router-link>
   

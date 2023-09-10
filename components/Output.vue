@@ -14,8 +14,8 @@ export default {
 </script>
 
 <template>
-  <div class="title title-out">Output:</div>
-  <pre class="output">{{ output }}</pre>
+  <div class="title title-out is-family-monospace">Output:</div>
+  <pre class="output is-family-monospace">{{ output }}</pre>
 </template>
 
 <style scoped>

@@ -17,6 +17,10 @@ import Matrix from './components/Matrix.vue';
 
 
 <style>
+html {
+  overflow: hidden;
+}
+
 
 .home-screen {
   height: 100%;
@@ -54,5 +58,9 @@ import Matrix from './components/Matrix.vue';
     background-color: #48c78e52;
     border-color: #48c78e;
     color: #fff;
+}
+.navbar.is-dark .navbar-brand .navbar-link.is-active, .navbar.is-dark .navbar-brand .navbar-link:focus, .navbar.is-dark .navbar-brand .navbar-link:hover, .navbar.is-dark .navbar-brand>a.navbar-item.is-active, .navbar.is-dark .navbar-brand>a.navbar-item:focus, .navbar.is-dark .navbar-brand>a.navbar-item:hover {
+  background-color: transparent;
+  color: #fff;
 }
 </style>

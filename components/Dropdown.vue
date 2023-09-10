@@ -2,9 +2,11 @@
 import { ref } from "vue";
 let props = defineProps(["title", "struct", "changefun"]);
 
+
 const isActive = ref(false);
 const activeClass = ref("active");
 const inActiveClass = ref("inactive");
+
 
 function toggle() {
   isActive.value = !isActive.value;
@@ -14,7 +16,7 @@ function toggle() {
 
 <template>
   <div class="dropdown1 has-background-dark">
-    <div @click="toggle" class="drop-title lctitle is-5 has-text-white-ter p-4">
+    <div @click="toggle" class="drop-title lctitle is-5 has-text-white-ter p-4 is-family-monospace">
       {{ props.title }}
     </div>
     <div :class="[isActive ? activeClass : inActiveClass, 'list']">
@@ -24,13 +26,15 @@ function toggle() {
         class="list-item columns_or "
       >
         <label
-          :for="item.name"
-          class="has-text-white label column_or"
+          :for="item.id"
+          class="label is-small column_or hint--bottom is-family-monospace"
+          v-tippy="item.desc"
+          :style="item.color? `color: ${item.color}`: ''" 
           >{{ item.name }}</label
         >
         <input
-          class="text-field input column_or"
-          :name="item.name"
+          :class="['text-field is-small input column_or is-family-monospace', struct[item.id].error? 'is-danger': '']"
+          :name="item.id"
           v-if="item.text"
           type="text"
           :value="item.value"
@@ -52,7 +56,7 @@ function toggle() {
 
 <style scoped>
 .drop-title {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 500;
   text-transform: uppercase;
 }

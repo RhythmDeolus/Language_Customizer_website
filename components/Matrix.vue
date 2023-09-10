@@ -96,7 +96,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas id="c" ref="canvasId"></canvas>
+  <canvas id="c" ref="canvasId" class="is-family-monospace"></canvas>
 </template>
 
 

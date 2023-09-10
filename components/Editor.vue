@@ -1,10 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import { ref, defineOptions } from "vue";
 import { useStore } from "vuex";
+import Documentation from "./Documentation.vue";
 const store = useStore();
 
 const editorId = ref("");
 const run = ref("");
+const docId = ref("");
 
 function update(text) {
   let result_element = document.querySelector("#highlighting-content");
@@ -13,11 +15,11 @@ function update(text) {
     text += " ";
   }
   // Update code
-  result_element.innerHTML = text;
-  //   .replace(new RegExp("&", "g"), "&amp;")
-  //   .replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
-  // // Syntax Highlight
-  // Prism.highlightElement(result_element);
+  result_element.innerHTML = text
+    .replace(new RegExp("&", "g"), "&amp;")
+    .replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
+  // Syntax Highlight
+  Prism.highlightElement(result_element);
 }
 
 function sync_scroll(element) {
@@ -26,6 +28,13 @@ function sync_scroll(element) {
   // Get and set x and y
   result_element.scrollTop = element.scrollTop;
   result_element.scrollLeft = element.scrollLeft;
+}
+function calc(value) {
+  let out = {
+    value: "",
+  };
+  HL.hl.run(value, out);
+  store.commit("changeOutput", out.value);
 }
 
 function check_tab(element, event) {
@@ -46,51 +55,37 @@ function check_tab(element, event) {
     calc();
   }
 }
-async function sub_calc() {
-  let out = {
-    value: "",
-  };
-  HL.hl.run(editorId.value.value, out);
-  store.commit("changeOutput", out.value);
+
+function showDoc() {
+  docId.value.showDoc();
 }
 
-function calc() {
-  sub_calc();
-}
 </script>
 
 <template>
+  <Documentation ref="docId"/>
   <div class="stack">
-    <textarea
-      id="editing"
-      ref="editorId"
-      spellcheck="false"
-      @input="
-        (event) => {
-          update(event.target.value);
-          sync_scroll(event.target);
-        }
-      "
-      @scroll="
-        (event) => {
-          sync_scroll(event.target);
-        }
-      "
-      @keydown="(event) => check_tab(event.target, event)"
-    ></textarea>
+    <textarea id="editing" ref="editorId" spellcheck="false" @input="(event) => {
+        update(event.target.value);
+        sync_scroll(event.target);
+      }
+      " @scroll="(event) => {
+      sync_scroll(event.target);
+    }
+    " @keydown="(event) => check_tab(event.target, event)"></textarea>
 
     <pre id="highlighting" aria-hidden="true">
-      <code class="language-js" id="highlighting-content"></code>
+      <code class="language-melang" id="highlighting-content"></code>
       </pre>
   </div>
-  <div class="contain-button">
-    <button
-      :class="['button', 'is-success']"
-      ref="run"
-      @click="calc"
-      type="button"
-      style="position: relative; float: right; margin: 0 20px"
-    >
+  
+  <div class="contain-buttons">
+    <button :class="['button', 'is-success', 'is-family-monospace']" ref="run" @click="showDoc" type="button"
+      style="position: relative; float: right; margin: 0 20px">
+      Documentation
+    </button>
+    <button :class="['button', 'is-success', 'is-family-monospace']" ref="run" @click="calc(editorId.value)" type="button"
+      style="position: relative; float: right; margin: 0 20px">
       Run
     </button>
   </div>
@@ -99,9 +94,16 @@ function calc() {
 <style scoped>
 /* Please see the article */
 
-.contain-button {
+.contain-buttons {
   overflow: auto;
   height: 15%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.contain-buttons > * {
+  margin-right: 1rem;
 }
 
 #editing::-webkit-scrollbar,
@@ -138,7 +140,7 @@ function calc() {
 #highlighting,
 #highlighting * {
   /* Also add text styles to highlighing tokens */
-  font-size: 15pt;
+  font-size: 1.1rem;
   font-family: monospace;
   line-height: 1.5;
   tab-size: 2;
@@ -154,7 +156,7 @@ function calc() {
   height: 40%;
 }
 
-.stack > * {
+.stack>* {
   grid-row: 1;
   grid-column: 1;
 }
@@ -251,7 +253,7 @@ code[class*="language-"] {
 }
 
 /* Inline code */
-:not(pre) > code[class*="language-"] {
+:not(pre)>code[class*="language-"] {
   padding: 0.2em;
   border-radius: 0.3em;
   box-shadow: none;
@@ -328,14 +330,14 @@ code[class*="language-"] {
 }
 
 /* Plugin styles: Diff Highlight */
-pre.diff-highlight.diff-highlight > code .token.deleted:not(.prefix),
-pre > code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
+pre.diff-highlight.diff-highlight>code .token.deleted:not(.prefix),
+pre>code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
   background-color: rgba(255, 0, 0, 0.3);
   display: inline;
 }
 
-pre.diff-highlight.diff-highlight > code .token.inserted:not(.prefix),
-pre > code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
+pre.diff-highlight.diff-highlight>code .token.inserted:not(.prefix),
+pre>code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
   background-color: rgba(0, 255, 128, 0.3);
   display: inline;
 }

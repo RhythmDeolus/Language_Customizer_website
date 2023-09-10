@@ -4,6 +4,10 @@ import { createStore } from "vuex";
 
 import App from "./App.vue"
 
+import VueTippy from 'vue-tippy'
+import 'tippy.js/dist/tippy.css' // optional for styling
+
+
 import Playground from "./components/Playground.vue";
 import Creator from "./components/Creator.vue";
 import Home from "./components/Home.vue";
@@ -63,4 +67,14 @@ const store = createStore({
 //     template: "<App />",
 // }).$mount("#app");
 
-const app = createApp(App).use(store).use(router).mount("#app");
+const app = createApp(App).use(store).use(router);
+
+app.use(
+  VueTippy,
+  {
+    directive: 'tippy', // => v-tippy
+    component: 'tippy', // => <tippy/>
+  }
+)
+
+app.mount("#app");

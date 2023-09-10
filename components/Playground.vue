@@ -10,12 +10,11 @@ if (route.query.json) config = JSON.parse(atob(route.query.json));
 
 // onBeforeMount(() => {
 
-let keywords = HL.hl.getKeywords();
+// let keywords = HL.hl.getKeywords();
+// let reverseKeywords = HL.hl.getReverseKeywords();
 
 for (let key in config.keys) {
-  let c = keywords[key];
-  delete keywords[key];
-  keywords[config.keys[key]] = c;
+  HL.hl.setKeyword(key, config.keys[key]);
 }
 
 // })
