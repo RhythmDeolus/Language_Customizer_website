@@ -8,16 +8,12 @@ const route = useRoute();
 let config = {keys: {}};
 if (route.query.json) config = JSON.parse(atob(route.query.json));
 
-// onBeforeMount(() => {
 
-// let keywords = HL.hl.getKeywords();
-// let reverseKeywords = HL.hl.getReverseKeywords();
 
 for (let key in config.keys) {
   HL.hl.setKeyword(key, config.keys[key]);
 }
 
-// })
 
 </script>
 

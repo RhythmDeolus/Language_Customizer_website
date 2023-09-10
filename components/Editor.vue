@@ -30,6 +30,7 @@ function sync_scroll(element) {
   result_element.scrollLeft = element.scrollLeft;
 }
 function calc(value) {
+  console.log(value);
   let out = {
     value: "",
   };
@@ -52,7 +53,7 @@ function check_tab(element, event) {
     update(element.value); // Update text to include indent
   }
   if (event.key == "Enter" && event.ctrlKey) {
-    calc();
+    calc(editorId.value.value);
   }
 }
 

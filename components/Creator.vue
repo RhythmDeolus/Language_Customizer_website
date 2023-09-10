@@ -2,14 +2,17 @@
 import { ref, computed } from "vue";
 import Dropdown from "./Dropdown.vue";
 import { useRouter, useRoute } from "vue-router";
+import KeywordsDrop from "./KeywordsDrop.vue";
 
 const router = useRouter();
 const route = useRoute();
 
+const keydropId = ref(null);
+
 let v = computed(() => {
   let t = {};
-  for (let key in keyStruct.value) {
-    t[key] = keyStruct.value[key].value;
+  for (let key in getKeyStruct()) {
+    t[key] = getKeyStruct()[key].value;
   }
   return "/playground?json=" + btoa(JSON.stringify({ keys: t }));
 });
@@ -17,10 +20,6 @@ let v = computed(() => {
 let v2 = route.fullPath;
 
 const keywords = HL.hl.getKeywords();
-const reverseKeywords = HL.hl.getReverseKeywords();
-const keyDesc = HL.hl.getKeyDesc();
-
-const keyColors = HL.hl.getKeyColors();
 
 function defineLang() {
   let language = {
@@ -54,29 +53,13 @@ function defineLang() {
 defineLang();
 
 
-
-let r = {};
-for (let key in keywords) {
-  r[keywords[key]] = {
-    name: key,
-    id: keywords[key],
-    text: true,
-    value: key,
-    color: keyColors[keywords[key]],
-    desc: keyDesc[keywords[key]],
-    error: false,
-  };
-}
-
 let props = defineProps(["dynamic"]);
 
-const keyStruct = ref(r);
 
 function setKeywords() {
   v2 = v.value;
-  for (let key in keyStruct.value) {
-    keyStruct.value[key].error = false;
-    HL.hl.setKeyword(key, keyStruct.value[key].value)
+  for (let key in getKeyStruct()) {
+    HL.hl.setKeyword(key, getKeyStruct()[key].value)
   }
   defineLang();
 }
@@ -86,19 +69,30 @@ function shareLink() {
   mdtoast("Copied to the clipboard", { type: mdtoast.SUCCESS });
 }
 function invalid(key1, key2) {
-  keyStruct.value[key1].error = true;
-  keyStruct.value[key2].error = true;
+  getKeyStruct()[key1].error = true;
+  getKeyStruct()[key2].error = true;
   mdtoast("Error: Keywords aren't unique", { type: mdtoast.ERROR });
 }
 
+function clearErrors() {
+  for (let key in getKeyStruct()) {
+    getKeyStruct()[key].error = false;
+  }
+}
+
+function getKeyStruct() {
+  return keydropId.value.keyStruct;
+}
+
 function check(reject =() => {}) {
+  clearErrors();
   let set = {};
-  for (let key in keyStruct.value) {
-    if (keyStruct.value[key].value in set) {
-      reject(key, set[keyStruct.value[key].value]);
+  for (let key in getKeyStruct()) {
+    if (getKeyStruct()[key].value in set) {
+      reject(key, set[getKeyStruct()[key].value]);
       return false;
     }
-    set[keyStruct.value[key].value] = key;
+    set[getKeyStruct()[key].value] = key;
   }
   return true;
 }
@@ -118,7 +112,7 @@ function goToPlay() {
     <div class="subscreen">
       <div class="container has-background-grey-dark">
         <div class="dropdowns">
-          <Dropdown title="Keywords" :struct="keyStruct" class=""></Dropdown>
+          <KeywordsDrop ref="keydropId"/>
         </div>
       </div>
       <div class="button-list">
