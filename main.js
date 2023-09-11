@@ -29,12 +29,16 @@ const router = createRouter({
 const moduleA = {
   state() {
     return {
-      output: ""
+      output: "",
+      outputErr: ""
     }
   },
   mutations: {
     changeOutput(state, output) {
       state.output = output;
+    },
+    changeOutputErr(state, outputErr) {
+      state.outputErr = outputErr;
     }
   }
 }

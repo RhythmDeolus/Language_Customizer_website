@@ -4,7 +4,8 @@ import { ref } from "vue";
 import Section from "./Section.vue";
 
 const docId = ref("");
-defineProps(['ref']);
+
+const tog = ref(true);
 
 function showDoc() {
   docId.value.classList.add('is-active');
@@ -14,10 +15,18 @@ function hideDoc() {
   docId.value.classList.remove('is-active');
 }
 
+function updateDoc() {
+  docs.value = HL.hl.getDocumentation();
+  tog.value = !tog.value;
+}
+
+const docs = ref(HL.hl.getDocumentation());
+
 
 defineExpose({
   showDoc,
-  hideDoc
+  hideDoc,
+  updateDoc,
 })
 
 
@@ -32,7 +41,7 @@ defineExpose({
         <button class="delete" aria-label="close" @click="hideDoc"></button>
       </header>
       <section class="modal-card-body has-background-grey-dark has-text-white-ter is-family-monospace">
-        <Section title="hello" desc="how" code="print 'hello';" />
+        <Section v-for="item in docs" :key="tog? 2*item.id + 0: 2*item.id + 1" :title="item.title" :desc="item.desc" :code="item.code" />
       </section>
       <footer class="modal-card-foot has-background-dark">
         <button class="button is-success is-family-monospace" @click="hideDoc">Done</button>

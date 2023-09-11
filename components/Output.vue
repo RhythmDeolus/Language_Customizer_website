@@ -9,13 +9,16 @@ export default {
     output() {
       return this.$store.state.a.output;
     },
+    outputErr() {
+      return this.$store.state.a.outputErr;
+    },
   },
 };
 </script>
 
 <template>
   <div class="title title-out is-family-monospace">Output:</div>
-  <pre class="output is-family-monospace">{{ output }}</pre>
+  <pre class="output is-family-monospace"><span class="out">{{ output }}</span><span class="out-err">{{ outputErr }}</span></pre>
 </template>
 
 <style scoped>
@@ -30,6 +33,10 @@ export default {
   height: 25%;
   margin: 0 10px;
   font-size: large;
+}
+
+.out-err {
+  color: red;
 }
 
 .title-out {

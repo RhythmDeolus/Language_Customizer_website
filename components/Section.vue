@@ -6,7 +6,6 @@ const props = defineProps(['title', 'desc', 'code']);
 const codeId = ref(null);
 
 function setCode() {
-  console.log(props.code);
   if (props.code[props.length - 1] == "\n") {
     props.code += " ";
   }
@@ -24,7 +23,8 @@ onMounted(setCode);
 
 <template>
   <div class="section">
-    <div class="title">{{props.title}}</div>
+    <div class="title is-4 has-text-white-ter">{{props.title}}</div>
+    <hr>
     <div>{{props.desc}}</div>
     <pre class="highlighting2 is-family-monospace" aria-hidden="true"><code class="language-melang highlighting-content2" ref="codeId" ></code></pre>
   </div>
@@ -32,6 +32,7 @@ onMounted(setCode);
 
 
 <style scoped>
+
 .highlighting2, .highlighting2 > * {
   font-size: 1.1rem;
   font-family: monospace;

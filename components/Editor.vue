@@ -8,6 +8,9 @@ const editorId = ref("");
 const run = ref("");
 const docId = ref("");
 
+
+const isLoading = ref(false);
+
 function update(text) {
   let result_element = document.querySelector("#highlighting-content");
   // Handle final newlines (see article)
@@ -34,8 +37,15 @@ function calc(value) {
   let out = {
     value: "",
   };
+  isLoading.value = true;
   HL.hl.run(value, out);
+  isLoading.value = false;
   store.commit("changeOutput", out.value);
+  if (out.err === true) {
+    store.commit("changeOutputErr", out.errMsg);
+  } else {
+    store.commit("changeOutputErr", "");
+  }
 }
 
 function check_tab(element, event) {
@@ -58,6 +68,7 @@ function check_tab(element, event) {
 }
 
 function showDoc() {
+  docId.value.updateDoc();
   docId.value.showDoc();
 }
 
@@ -85,7 +96,7 @@ function showDoc() {
       style="position: relative; float: right; margin: 0 20px">
       Documentation
     </button>
-    <button :class="['button', 'is-success', 'is-family-monospace']" ref="run" @click="calc(editorId.value)" type="button"
+    <button :class="['button', 'is-success', 'is-family-monospace', isLoading? 'is-loading': '']" ref="run" @click="calc(editorId.value)" type="button"
       style="position: relative; float: right; margin: 0 20px">
       Run
     </button>

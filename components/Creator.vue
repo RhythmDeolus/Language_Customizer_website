@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed } from "vue";
-import Dropdown from "./Dropdown.vue";
 import { useRouter, useRoute } from "vue-router";
 import KeywordsDrop from "./KeywordsDrop.vue";
 
@@ -62,6 +61,7 @@ function setKeywords() {
     HL.hl.setKeyword(key, getKeyStruct()[key].value)
   }
   defineLang();
+  mdtoast("Applied new language rules", { type: mdtoast.SUCCESS });
 }
 
 function shareLink() {
@@ -114,12 +114,12 @@ function goToPlay() {
         <div class="dropdowns">
           <KeywordsDrop ref="keydropId"/>
         </div>
-      </div>
-      <div class="button-list">
-        <button @click="shareLink" class="button is-success is-family-monospace" v-if="props.dynamic">Share</button>
-        <button @click="validate(setKeywords, invalid);" class="button is-success is-family-monospace" v-if="props.dynamic">Apply</button>
-
-        <button class="button is-success is-family-monospace" @click="validate(goToPlay, invalid);" v-if="!props.dynamic">Go!</button>
+        <div class="button-list">
+          <button @click="shareLink" class="button is-success is-family-monospace" v-if="props.dynamic">Share</button>
+          <button @click="validate(setKeywords, invalid);" class="button is-success is-family-monospace" v-if="props.dynamic">Apply</button>
+  
+          <button class="button is-success is-family-monospace" @click="validate(goToPlay, invalid);" v-if="!props.dynamic">Go!</button>
+        </div>
       </div>
     </div>
   </div>
@@ -150,6 +150,7 @@ function goToPlay() {
   justify-content: end;
   align-items: center;
   bottom: 1.5rem;
+  margin: 1rem;
 }
 
 .button-list>* {
