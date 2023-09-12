@@ -1,4 +1,10 @@
 /*!
+  * vue-tippy v6.3.1
+  * (c) 2023 
+  * @license MIT
+  */
+
+/*!
  * vuex v4.1.0
  * (c) 2022 Evan You
  * @license MIT

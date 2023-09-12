@@ -49,3 +49,9 @@ defineExpose({
     </div>
   </div>
 </template>
+
+<style scoped>
+.modal {
+  padding: 11vh 1vw 1vh 1vw;
+}
+</style>

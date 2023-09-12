@@ -114,12 +114,12 @@ function goToPlay() {
         <div class="dropdowns">
           <KeywordsDrop ref="keydropId"/>
         </div>
-        <div class="button-list">
-          <button @click="shareLink" class="button is-success is-family-monospace" v-if="props.dynamic">Share</button>
-          <button @click="validate(setKeywords, invalid);" class="button is-success is-family-monospace" v-if="props.dynamic">Apply</button>
-  
-          <button class="button is-success is-family-monospace" @click="validate(goToPlay, invalid);" v-if="!props.dynamic">Go!</button>
-        </div>
+      </div>
+      <div class="button-list">
+        <button @click="shareLink" class="button is-success is-family-monospace" v-if="props.dynamic">Share</button>
+        <button @click="validate(setKeywords, invalid);" class="button is-success is-family-monospace" v-if="props.dynamic">Apply</button>
+
+        <button class="button is-success is-family-monospace" @click="validate(goToPlay, invalid);" v-if="!props.dynamic">Go!</button>
       </div>
     </div>
   </div>
@@ -135,6 +135,7 @@ function goToPlay() {
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
+  max-width: 100%;
   /* Firefox */
 }
 
@@ -151,6 +152,7 @@ function goToPlay() {
   align-items: center;
   bottom: 1.5rem;
   margin: 1rem;
+  z-index: 1px;
 }
 
 .button-list>* {
@@ -169,5 +171,6 @@ function goToPlay() {
   width: 100%;
   height: 100%;
   position: absolute;
+  max-width: 100%;
 }
 </style>
