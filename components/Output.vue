@@ -18,7 +18,8 @@ export default {
 
 <template>
   <div class="title title-out is-family-monospace">Output:</div>
-  <pre class="output is-family-monospace"><span class="out">{{ output }}</span><span class="out-err">{{ outputErr }}</span></pre>
+  <pre class="output is-family-monospace"><span class="out">{{ output }}</span>
+<span class="out-err">{{ outputErr }}</span></pre>
 </template>
 
 <style scoped>
