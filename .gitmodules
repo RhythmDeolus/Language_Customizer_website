@@ -1,3 +1,4 @@
 [submodule "Language_Customizer"]
 	path = Language_Customizer
 	url = https://github.com/RhythmDeolus/Language_Customizer.git
+	ignore = dirty
