@@ -3,6 +3,8 @@ import { ref } from "vue";
 
 import Section from "./Section.vue";
 
+import HL from "../Language_Customizer/src/index";
+
 const docId = ref("");
 
 const tog = ref(true);

@@ -2,6 +2,8 @@
 import { ref, defineOptions } from "vue";
 import { useStore } from "vuex";
 import Documentation from "./Documentation.vue";
+import HL from "../Language_Customizer/src/index";
+
 const store = useStore();
 
 const editorId = ref("");

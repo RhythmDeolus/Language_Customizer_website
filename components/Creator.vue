@@ -3,6 +3,8 @@ import { ref, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import KeywordsDrop from "./KeywordsDrop.vue";
 
+import HL from "../Language_Customizer/src/index";
+
 const router = useRouter();
 const route = useRoute();
 

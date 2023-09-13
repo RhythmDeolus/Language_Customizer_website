@@ -1,6 +1,7 @@
 <script setup>
 
 import {ref, onMounted} from "vue";
+
 const props = defineProps(['title', 'desc', 'code']);
 
 const codeId = ref(null);

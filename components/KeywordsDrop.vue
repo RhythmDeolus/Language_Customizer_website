@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import Dropdown from './Dropdown.vue';
+import HL from "../Language_Customizer/src/index";
+
 
 const keywords = HL.hl.getKeywords();
 const reverseKeywords = HL.hl.getReverseKeywords();

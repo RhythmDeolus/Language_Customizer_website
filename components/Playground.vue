@@ -3,6 +3,8 @@ import Editor from "./Editor.vue";
 import Output from "./Output.vue";
 import Creator from "./Creator.vue";
 import { useRoute } from "vue-router";
+import HL from "../Language_Customizer/src/index";
+
 
 const route = useRoute();
 let config = {keys: {}};
