@@ -2,7 +2,7 @@
 import { ref, defineOptions } from "vue";
 import { useStore } from "vuex";
 import Documentation from "./Documentation.vue";
-import HL from "../Language_Customizer/src/index";
+import HL from "language_customizer";
 
 const store = useStore();
 

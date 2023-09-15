@@ -3,7 +3,7 @@ import Editor from "./Editor.vue";
 import Output from "./Output.vue";
 import Creator from "./Creator.vue";
 import { useRoute } from "vue-router";
-import HL from "../Language_Customizer/src/index";
+import HL from "language_customizer";
 
 
 const route = useRoute();

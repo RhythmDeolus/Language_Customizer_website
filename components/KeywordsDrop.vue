@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import Dropdown from './Dropdown.vue';
-import HL from "../Language_Customizer/src/index";
+import HL from "language_customizer";
 
 
 const keywords = HL.hl.getKeywords();

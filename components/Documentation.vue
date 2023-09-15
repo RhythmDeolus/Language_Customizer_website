@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import Section from "./Section.vue";
 
-import HL from "../Language_Customizer/src/index";
+import HL from "language_customizer";
 
 const docId = ref("");
 
