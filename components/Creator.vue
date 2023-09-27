@@ -86,7 +86,7 @@ function getKeyStruct() {
   return keydropId.value.keyStruct;
 }
 
-function check(reject =() => {}) {
+function check(reject = () => { }) {
   clearErrors();
   let set = {};
   for (let key in getKeyStruct()) {
@@ -114,14 +114,16 @@ function goToPlay() {
     <div class="subscreen">
       <div class="container has-background-grey-dark">
         <div class="dropdowns">
-          <KeywordsDrop ref="keydropId"/>
+          <KeywordsDrop ref="keydropId" />
         </div>
       </div>
       <div class="button-list">
         <button @click="shareLink" class="button is-success is-family-monospace" v-if="props.dynamic">Share</button>
-        <button @click="validate(setKeywords, invalid);" class="button is-success is-family-monospace" v-if="props.dynamic">Apply</button>
+        <button @click="validate(setKeywords, invalid);" class="button is-success is-family-monospace"
+          v-if="props.dynamic">Apply</button>
 
-        <button class="button is-success is-family-monospace" @click="validate(goToPlay, invalid);" v-if="!props.dynamic">Go!</button>
+        <button class="button is-success is-family-monospace" @click="validate(goToPlay, invalid);"
+          v-if="!props.dynamic">Go!</button>
       </div>
     </div>
   </div>

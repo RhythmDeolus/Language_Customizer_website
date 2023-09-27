@@ -7,7 +7,7 @@ import HL from "language_customizer";
 
 
 const route = useRoute();
-let config = {keys: {}};
+let config = { keys: {} };
 if (route.query.json) config = JSON.parse(atob(route.query.json));
 
 
@@ -21,10 +21,7 @@ for (let key in config.keys) {
 
 <template>
   <div class="screens">
-    <div
-      class="screen1"
-      style="justify-content: center; align-items: center; display: flex"
-    >
+    <div class="screen1" style="justify-content: center; align-items: center; display: flex">
       <div class="main-container has-background-grey-dark box">
         <Editor />
         <Output />
@@ -46,15 +43,18 @@ for (let key in config.keys) {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .screens {
   width: 100%;
   height: 100%;
 }
+
 .screen1 {
   position: absolute;
   width: 60%;
   height: 100%;
 }
+
 .screen2 {
   right: 0;
   width: 40%;

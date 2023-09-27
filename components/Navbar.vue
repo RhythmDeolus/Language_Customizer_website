@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 
 import { useRoute } from "vue-router";
 
@@ -24,29 +24,32 @@ function reset() {
       <router-link @click="reset" class="navbar-item has-background-dark" to="/">
         <img id="logo" src="/dist/programming.png" alt="logo" width="112" height="28">
       </router-link>
-  
-      <a role="button" class="navbar-burger"  @click="toggle" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
+      <a role="button" class="navbar-burger" @click="toggle" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
-  
+
     <div id="navbarBasicExample" ref="navbarId" class="navbar-menu has-background-dark">
       <div class="navbar-start">
-        <router-link @click="reset" :class="['navbar-item', route.path == '/creator'? 'has-background-success-dark': '']" to="/creator">
+        <router-link @click="reset" :class="['navbar-item', route.path == '/creator' ? 'has-background-success-dark' : '']"
+          to="/creator">
           Creator
         </router-link>
-  
-        <router-link @click="reset" :class="['navbar-item', route.path == '/playground'? 'has-background-success-dark': '']" to="/playground">
+
+        <router-link @click="reset"
+          :class="['navbar-item', route.path == '/playground' ? 'has-background-success-dark' : '']" to="/playground">
           Playground
         </router-link>
-  
+
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             More
           </a>
-  
+
           <div class="navbar-dropdown has-background-dark">
             <a class="navbar-item">
               About
@@ -70,13 +73,18 @@ function reset() {
   width: 100%;
 }
 
-.navbar-item, .navbar-link {
+.navbar-item,
+.navbar-link {
   color: white;
 }
-a.navbar-item:hover, .navbar-item:hover, .navbar-link:hover {
+
+a.navbar-item:hover,
+.navbar-item:hover,
+.navbar-link:hover {
   background-color: rgba(0, 0, 0, 0.327);
   color: white;
 }
+
 .navbar-link::after {
   border-color: white;
 }
@@ -85,5 +93,4 @@ a.navbar-item:hover, .navbar-item:hover, .navbar-link:hover {
   height: 1.75rem;
   width: 1.75rem;
   filter: contrast(0);
-}
-</style>
+}</style>

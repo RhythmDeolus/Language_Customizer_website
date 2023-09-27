@@ -17,7 +17,7 @@ for (let key in keywords) {
     id: keywords[key],
     text: true,
     value: key,
-    color: keyColors[keywords[key]],
+    color: "#009105",
     desc: keyDesc[keywords[key]],
     error: false,
   };
@@ -26,7 +26,7 @@ for (let key in keywords) {
 const keyStruct = ref(r);
 
 
-defineExpose({keyStruct});
+defineExpose({ keyStruct });
 
 </script>
 

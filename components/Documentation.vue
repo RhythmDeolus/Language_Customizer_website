@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-import Section from "./Section.vue";
+import Section from "./SectionComponent.vue";
 
 import HL from "language_customizer";
 
@@ -43,7 +43,8 @@ defineExpose({
         <button class="delete" aria-label="close" @click="hideDoc"></button>
       </header>
       <section class="modal-card-body has-background-grey-dark has-text-white-ter is-family-monospace">
-        <Section v-for="item in docs" :key="tog? 2*item.id + 0: 2*item.id + 1" :title="item.title" :desc="item.desc" :code="item.code" />
+        <Section v-for="item in docs" :key="tog ? 2 * item.id + 0 : 2 * item.id + 1" :title="item.title" :desc="item.desc"
+          :code="item.code" />
       </section>
       <footer class="modal-card-foot has-background-dark">
         <button class="button is-success is-family-monospace" @click="hideDoc">Done</button>
