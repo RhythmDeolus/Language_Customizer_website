@@ -46,6 +46,7 @@ p code {
   border-radius: 2px;
   background-color: #eee;
   color: #111;
+  font-weight: 700;
 }
 
 .highlighting2 {
@@ -56,10 +57,11 @@ p code {
   height: 100%;
   margin: 0;
   scrollbar-width: thin;
+  white-space: pre-wrap;
 }
 
 .highlighting2 {
   background-color: black;
-  filter: hue-rotate(54deg) saturate(1.9) brightness(0.5);
+  filter: hue-rotate(54deg) saturate(1.9) brightness(0.8);
 }
 </style>

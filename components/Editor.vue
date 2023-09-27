@@ -88,9 +88,8 @@ function showDoc() {
   }
     " @keydown="(event) => check_tab(event.target, event)"></textarea>
 
-    <pre id="highlighting" aria-hidden="true">
-      <code class="language-melang" id="highlighting-content"></code>
-      </pre>
+    <pre id="highlighting" aria-hidden="true"><code class="language-melang" id="highlighting-content"></code></pre>
+    <div class="overlay"></div>
   </div>
 
   <div class="contain-buttons">
@@ -137,18 +136,32 @@ function showDoc() {
 
 #highlighting {
   background-color: black;
-  filter: hue-rotate(54deg) saturate(1.9) brightness(0.5);
+  filter: hue-rotate(54deg) saturate(1.9) brightness(0.8);
 }
 
 #editing,
 #highlighting {
   /* Both elements need the same text and space styling so they are directly on top of each other */
-  padding: 10px;
   border: 0;
   width: calc(100%);
   height: 100%;
   margin: 0;
   scrollbar-width: thin;
+}
+
+#editing {
+  padding: 1em;
+  padding-left: 3.8em;
+  white-space: pre-wrap;
+}
+
+.overlay {
+  position: absolute;
+  width: 3.8em;
+  height: 100%;
+  z-index: 2;
+  background-color: #5454545e;
+  border-radius: 10px 0 0 10px;
 }
 
 #editing,
@@ -169,6 +182,7 @@ function showDoc() {
   display: grid;
   margin: 0 10px;
   height: 40%;
+  position: relative;
 }
 
 .stack>* {
@@ -199,9 +213,12 @@ function showDoc() {
 #editing,
 #highlighting {
   overflow: auto;
-  white-space: nowrap;
+  white-space: pre-wrap;
+  line-break: anywhere;
   /* Allows textarea to scroll horizontally */
 }
+
+
 
 /* No resize on textarea */
 #editing {
@@ -217,6 +234,6 @@ p code {
   border-radius: 2px;
   background-color: #eee;
   color: #111;
+  font-weight: 700;
 }
-
 </style>

@@ -46,7 +46,7 @@ function defineLang() {
     },
     'function': /\b\w+(?=\()/,
     'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
-    'punctuation': /[{}[\];(),.:]/
+    'punctuation': /[{}[\];(),.:]/,
   }
   Prism.languages.melang = language;
 }
