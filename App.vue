@@ -77,4 +77,24 @@ html {
 .navbar.is-dark .navbar-brand>a.navbar-item:hover {
   background-color: transparent;
   color: #fff;
-}</style>
+}
+.navbar-burger span {
+  height: 2px;
+}
+.navbar-burger {
+  filter: contrast(0.1);
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-item.has-background-dark {
+    background-color: transparent !important;
+  }
+  .navbar-brand {
+    height: 100%;
+  }
+  .navbar-brand > *{
+    height: 100%;
+  }
+}
+
+</style>
