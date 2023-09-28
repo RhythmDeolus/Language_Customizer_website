@@ -43,6 +43,7 @@ function toggle() {
   font-weight: 500;
   text-transform: uppercase;
   position: relative;
+  text-align: center;
 }
 
 .drop-arrow {
@@ -80,13 +81,17 @@ function toggle() {
 
 .dropdown1 {
   border-radius: 0.6rem;
-
+  max-width: 800px;
+  left: 47%;
+  position: relative;
+  transform: translate(-50%, 0);
 }
 
 .text-field {
   text-align: center;
   color: white;
   background: #6a6a6a57 !important;
+  max-width: 100px;
 }
 
 .text-field:not(.is-danger) {
@@ -94,15 +99,19 @@ function toggle() {
 }
 
 .list-item {
-  margin: 0.75rem 0;
+  padding: 0.75rem 0;
 }
 
 .columns_or {
   display: flex;
-  justify-content: start;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   width: 100%;
+}
+
+.list-item:nth-child(odd) {
+background-color: #6a6a6a1c;
 }
 
 .column_or {
@@ -116,6 +125,7 @@ function toggle() {
 
 .label {
   text-align: center;
+  max-width: 100px;
 }
 
 .list.active {

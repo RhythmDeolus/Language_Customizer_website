@@ -183,6 +183,7 @@ function showDoc() {
   margin: 0 10px;
   height: 40%;
   position: relative;
+  filter: opacity(0.8);
 }
 
 .stack>* {

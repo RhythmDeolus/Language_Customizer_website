@@ -34,6 +34,7 @@ export default {
   height: 25%;
   margin: 0 10px;
   font-size: large;
+  filter: opacity(0.8);
 }
 
 .out-err {

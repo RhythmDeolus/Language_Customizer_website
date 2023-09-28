@@ -58,6 +58,7 @@ p code {
   margin: 0;
   scrollbar-width: thin;
   white-space: pre-wrap;
+  filter: opacity(0.8);
 }
 
 .highlighting2 {

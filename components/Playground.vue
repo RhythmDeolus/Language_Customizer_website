@@ -4,18 +4,22 @@ import Output from "./Output.vue";
 import Creator from "./Creator.vue";
 import { useRoute } from "vue-router";
 import HL from "language_customizer";
+import { ref } from "vue";
 
 
 const route = useRoute();
 let config = { keys: {} };
 if (route.query.json) config = JSON.parse(atob(route.query.json));
 
-
+const isActive = ref(false);
 
 for (let key in config.keys) {
   HL.hl.setKeyword(key, config.keys[key]);
 }
 
+function toggleScreen2() {
+  isActive.value = !isActive.value;
+}
 
 </script>
 
@@ -27,7 +31,9 @@ for (let key in config.keys) {
         <Output />
       </div>
     </div>
-    <div class="screen2">
+    
+    <div ref="screen2" :class="['screen2', isActive ? 'active' : 'inactive']">
+      <button class="button2" @click="toggleScreen2"><img src="/dist/right-arrow.png" alt="left arrow" srcset=""></button>
       <Creator :dynamic="true" />
     </div>
   </div>
@@ -60,5 +66,40 @@ for (let key in config.keys) {
   width: 40%;
   height: 100%;
   position: absolute;
+}
+
+.button2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: calc(50% - 25px);
+  left: -50px;
+  transform: rotatez(180deg);
+  display: none;
+  background: transparent;
+  border: none;
+  filter: contrast(0.1) opacity(0.4)
+}
+
+
+@media screen and (max-width: 800px) {
+  .screen2.inactive {
+    width: 0px;
+  }
+  .screen2.active > .button2 {
+    transform: none;
+  }
+  
+  .button2 {
+    display: block;
+  }
+
+  .screen2.active {
+    width: 80%;
+  }
+
+  .screen1 {
+    width: 100%;
+  }
 }
 </style>

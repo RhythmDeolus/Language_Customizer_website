@@ -111,8 +111,8 @@ function goToPlay() {
 
 <template>
   <div class="screen">
-    <div class="subscreen">
-      <div class="container has-background-grey-dark">
+    <div class="subscreen has-background-grey-dark">
+      <div class="container">
         <div class="dropdowns">
           <KeywordsDrop ref="keydropId" />
         </div>
@@ -133,7 +133,7 @@ function goToPlay() {
 <style scoped>
 .container {
   width: 100%;
-  height: 100%;
+  height: 88%;
   padding: 20px;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -147,6 +147,10 @@ function goToPlay() {
   display: none;
 }
 
+.screen {
+  position: absolute;
+  overflow: hidden;
+}
 
 .button-list {
   position: absolute;
@@ -167,7 +171,7 @@ function goToPlay() {
   right: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
 }
 
 .screen {

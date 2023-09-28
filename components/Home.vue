@@ -20,7 +20,7 @@
     </div>
     <div class="links">
       <a href="https://github.com/RhythmDeolus/Language_Customizer"><img src="/dist/github.png" alt="github"></a>
-      <a href="https://github.com/RhythmDeolus/Language_Customizer"><img src="/dist/linkedin.png" alt="linkedin"></a>
+      <a href="https://linkedin.com/in/rhythm-deolus-98506a213"><img src="/dist/linkedin.png" alt="linkedin"></a>
     </div>
   </div>
 </template>
@@ -50,6 +50,8 @@
 .title {
   margin: 0;
   height: fit-content;
+  font-size: 4rem;
+  text-align: center;
 }
 
 .items {
@@ -74,7 +76,7 @@
   height: 60%;
   width: auto;
   display: block;
-  margin: 0 1rem;
+  margin: 0 2.5rem;
 }
 
 .links>a>img {
@@ -86,9 +88,22 @@
 .item {
   margin: 0 2rem;
   width: 30%;
+  min-width: 20rem;
 }
 
 .item>* {
   width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .main-title {
+    height: 50%;
+    font-size: xx-large;
+  }
+  .items {
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 }
 </style>
