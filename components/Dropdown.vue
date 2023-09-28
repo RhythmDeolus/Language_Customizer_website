@@ -33,6 +33,7 @@ function toggle() {
             " />
         <input type="checkbox" :id="item.id" :name="item.name" v-if="item.check" />
       </div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -82,7 +83,7 @@ function toggle() {
 .dropdown1 {
   border-radius: 0.6rem;
   max-width: 800px;
-  left: 47%;
+  left: 50%;
   position: relative;
   transform: translate(-50%, 0);
 }
@@ -110,7 +111,7 @@ function toggle() {
   width: 100%;
 }
 
-.list-item:nth-child(odd) {
+.list-item:nth-child(even) {
 background-color: #6a6a6a1c;
 }
 
