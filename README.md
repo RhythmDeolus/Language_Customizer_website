@@ -1,8 +1,8 @@
-# Language Customizer
+# [Language Customizer](https://language-customizer.web.app/)
 ---
 ![Logo of website](./dist/preview.png)
 
-This is a repository for the website https://language-customizer.onrender.com/ made with vuejs and hosted on render
+This is a repository for the [website](https://language-customizer.web.app/) made with vuejs and hosted on render
 
 ##### <ins>Local Hosting</ins>:
 ```shell
